@@ -1,18 +1,17 @@
-import { useState } from 'react'
+import { SongInfo } from './components/SongInfo'
 
-function App(): React.ReactElement {
-  const [count, setCount] = useState(0)
+const App = ():JSX.Element => {
+
+  const listItems = []
+  for(let i = 0; i < 8; i++) {
+    listItems.push(<SongInfo title='Song title' author='Song author' imageUrl='https://picsum.photos/200/300' />)
+  }
 
   return (
-    <div className="App">
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+    <div className='App'>
+      <h1>Zara challenge</h1>
+      <div className='mx-4 mt-8 ml-200 mr-200 mx-80 grid grid-cols-4 gap-4'>
+        {listItems}
       </div>
     </div>
   )
