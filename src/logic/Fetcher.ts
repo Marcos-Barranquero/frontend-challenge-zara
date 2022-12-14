@@ -1,4 +1,4 @@
-import { Episode, Podcast } from './Podcast'
+import { Episode, Podcast } from '../model/Podcast'
 
 // retreives json from https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json
 export const getPodcastListJson = (): Promise<Podcast[]> => {
