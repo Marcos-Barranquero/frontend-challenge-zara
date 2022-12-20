@@ -1,9 +1,9 @@
+import { Route, Routes } from 'react-router-dom'
 import { EpisodeDescription } from './components/EpisodeDescription'
 import { ExtendedSongInfo } from './components/ExtendedSongInfo'
 import { Mp3Player } from './components/Mp3Player'
 import { SongInfo } from './components/SongInfo'
 import { getEpisodesByPodcastId, getPodcastListJson } from './logic/Fetcher'
-import { Episode } from './model/Podcast'
 import PodcastList from './views/PodcastList'
 
 const App = (): JSX.Element => {
@@ -21,7 +21,11 @@ const App = (): JSX.Element => {
   //   console.log(data)
   // })
 
-  return <PodcastList />
+  return (
+    <Routes>
+      <Route path='/' element={<PodcastList />} />
+    </Routes>
+  )
 
   // return (
   //   <div className='App'>
