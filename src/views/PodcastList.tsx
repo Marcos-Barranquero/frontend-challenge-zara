@@ -1,24 +1,24 @@
 import useSWR from 'swr'
+import { SongInfo } from '../components/SongInfo'
+import { getPodcastListJson } from '../logic/Fetcher'
 import { Podcast } from '../model/Podcast'
 
-
 const PodcastList = (): JSX.Element => {
-  const { data, error } = useSWR('https://api.allorigins.win/raw?url=https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json', (url: string) =>
-    fetch(url).then(res => res.json())
+  // refresh interval for a day
+  const { data, error } = useSWR(
+    'https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json',
+    (url: string) => getPodcastListJson(url),
+    { refreshInterval: 86400000 }
   )
 
   if (error) return <div>Error: {error.message}</div>
   if (!data) return <div>Cargando...</div>
 
-  // Transforma los datos devueltos según tus necesidades
-  const podcasts = data.feed.entry.map((podcast: any) => {
-    console.log('yoloooooo')
-    const podcastID = podcast.id.attributes['im:id']
-
-    return new Podcast(podcastID, podcast['im:artist'].label, podcast['im:name'].label, podcast['im:image'][2].label, podcast.summary.label, [])
+  const podcasts = data.map((podcast: Podcast) => {
+    return <SongInfo title={podcast.title} author={podcast.author} imageUrl={podcast.imageURL} key={podcast.podcastId} />
   })
 
-  return <div>{JSON.stringify(podcasts)}</div>
+  return <div className='mx-4 mt-8 ml-200 mr-200 mx-80 grid grid-cols-4 gap-4'>{podcasts}</div>
 }
 
 export default PodcastList

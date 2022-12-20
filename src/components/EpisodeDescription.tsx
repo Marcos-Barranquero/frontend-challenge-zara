@@ -9,14 +9,9 @@ type EpisodeDescriptionProps = {
 export const EpisodeDescription = ({ title, audioURL, description }: EpisodeDescriptionProps): JSX.Element => {
   // TODO fix the width of the component
   return (
-    <div className='relative p-8 bg-white rounded-lg shadow-lg align-text w-300'>
-      <div className='mt-6 bg-white'>
-        <h1 className='text-3xl font-bold leading-tight'>{title}</h1>
-      </div>
-
-      <div className='mt-6 bg-white'>
-        <p className='text-gray-600'>{description}</p>
-      </div>
+    <div className='relative p-8 bg-white rounded-lg shadow-lg align-text w-6/12'>
+      <h1 className='mt-3 bg-white text-3xl font-bold leading-tight p-8'>{title}</h1>
+      <p className='mt-3 bg-white text-gray-600 p-8'>{description}</p>
 
       <hr className='my-6 border-gray-300' />
 
